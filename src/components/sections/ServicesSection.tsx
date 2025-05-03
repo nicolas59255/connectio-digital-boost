@@ -1,8 +1,16 @@
 
 import React from 'react';
 import ServiceCard from '@/components/ui/ServiceCard';
+import { Search, Settings, Users, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from '@/components/ui/carousel';
+import { Button } from '@/components/ui/button';
 import CTAButton from '@/components/ui/CTAButton';
-import { Search, Settings, Users, FileText } from 'lucide-react';
 
 const servicesData = [
   {
@@ -53,15 +61,32 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {servicesData.map((service, index) => (
-            <ServiceCard
-              key={index}
-              title={service.title}
-              icon={service.icon}
-              description={service.description}
-            />
-          ))}
+        {/* Services Carousel */}
+        <div className="mb-16">
+          <Carousel
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="py-4">
+              {servicesData.map((service, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
+                  <ServiceCard
+                    title={service.title}
+                    icon={service.icon}
+                    description={service.description}
+                    className="h-full"
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center mt-8 gap-4">
+              <CarouselPrevious className="relative static mx-0 translate-y-0" />
+              <CarouselNext className="relative static mx-0 translate-y-0" />
+            </div>
+          </Carousel>
         </div>
         
         <div className="mt-16 md:mt-24 bg-white rounded-lg shadow-xl p-8 md:p-12">
