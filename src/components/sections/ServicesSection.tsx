@@ -1,6 +1,7 @@
 
 import React from 'react';
 import ServiceCard from '@/components/ui/ServiceCard';
+import CTAButton from '@/components/ui/CTAButton';
 import { Search, Settings, Users, FileText } from 'lucide-react';
 
 const servicesData = [
