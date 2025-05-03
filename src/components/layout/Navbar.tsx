@@ -44,16 +44,16 @@ const Navbar: React.FC = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a href="#" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+            <a href="/#" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Accueil
             </a>
-            <a href="#services" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+            <a href="/#services" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Nos services
             </a>
-            <a href="#about" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+            <a href="/#about" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               À propos
             </a>
-            <a href="#contact" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+            <a href="/#contact" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Nous contacter
             </a>
           </nav>

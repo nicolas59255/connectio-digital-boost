@@ -20,22 +20,22 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold mb-4">Liens rapides</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/#" className="text-gray-300 hover:text-white transition-colors">
                   Accueil
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/#services" className="text-gray-300 hover:text-white transition-colors">
                   Nos services
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/#about" className="text-gray-300 hover:text-white transition-colors">
                   À propos
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/#contact" className="text-gray-300 hover:text-white transition-colors">
                   Nous contacter
                 </a>
               </li>

@@ -4,8 +4,9 @@ import Footer from '@/components/layout/Footer';
 
 const LevierPage: React.FC = () => {
   return (
-      <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-      <Navbar />
+    <div className="bg-gray-50">
+      <div className="py-16 px-4 sm:px-6 lg:px-8">
+        <Navbar />
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold mb-8">
             5 leviers d’automatisation par l’IA
@@ -99,10 +100,10 @@ const LevierPage: React.FC = () => {
             Connectio vous accompagne dans l’identification, la mise en œuvre et le financement de vos projets IA.
           </p>
         </div>
-        <main className="flex-grow">
-      </main>
-      <Footer />
+        <main className="flex-grow" />
       </div>
+      <Footer />
+    </div>
   );
 };
 
