@@ -4,9 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
+import emailjs from 'emailjs-com';
+import { Loader2 } from 'lucide-react';
 
 const ContactForm: React.FC = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,24 +23,49 @@ const ContactForm: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-
-    // Simulate form submission
-    toast({
-      title: "Formulaire envoyé !",
-      description: "Nous vous contacterons très bientôt.",
-    });
-
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      message: '',
-    });
+    setIsSubmitting(true);
+    
+    try {
+      // Ces informations doivent être remplacées par vos propres identifiants EmailJS
+      const serviceId = "YOUR_SERVICE_ID"; // Remplacez par votre Service ID d'EmailJS
+      const templateId = "YOUR_TEMPLATE_ID"; // Remplacez par votre Template ID d'EmailJS
+      const userId = "YOUR_USER_ID"; // Remplacez par votre User ID d'EmailJS
+      
+      const templateParams = {
+        from_name: formData.name,
+        reply_to: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        message: formData.message,
+      };
+      
+      await emailjs.send(serviceId, templateId, templateParams, userId);
+      
+      toast({
+        title: "Formulaire envoyé !",
+        description: "Nous vous contacterons très bientôt.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        message: '',
+      });
+    } catch (error) {
+      console.error("Erreur lors de l'envoi du formulaire:", error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur s'est produite lors de l'envoi du formulaire.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -55,6 +83,7 @@ const ContactForm: React.FC = () => {
             placeholder="Votre nom"
             required
             className="w-full"
+            disabled={isSubmitting}
           />
         </div>
         <div>
@@ -70,6 +99,7 @@ const ContactForm: React.FC = () => {
             placeholder="votre@email.com"
             required
             className="w-full"
+            disabled={isSubmitting}
           />
         </div>
         <div>
@@ -83,6 +113,7 @@ const ContactForm: React.FC = () => {
             onChange={handleChange}
             placeholder="Votre numéro de téléphone"
             className="w-full"
+            disabled={isSubmitting}
           />
         </div>
         <div>
@@ -96,6 +127,7 @@ const ContactForm: React.FC = () => {
             onChange={handleChange}
             placeholder="Nom de votre entreprise"
             className="w-full"
+            disabled={isSubmitting}
           />
         </div>
       </div>
@@ -112,10 +144,20 @@ const ContactForm: React.FC = () => {
           rows={4}
           required
           className="w-full"
+          disabled={isSubmitting}
         />
       </div>
-      <Button type="submit" className="w-full md:w-auto">
-        Envoyer le message
+      <Button 
+        type="submit" 
+        className="w-full md:w-auto"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Envoi en cours...
+          </>
+        ) : "Envoyer le message"}
       </Button>
     </form>
   );

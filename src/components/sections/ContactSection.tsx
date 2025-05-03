@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ContactForm from '@/components/ui/ContactForm';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, Clock } from 'lucide-react';
 
 const ContactSection: React.FC = () => {
   return (
@@ -21,6 +21,9 @@ const ContactSection: React.FC = () => {
           <div className="lg:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
             <h3 className="text-2xl font-semibold mb-6">Envoyez-nous un message</h3>
             <ContactForm />
+            <div className="mt-6 text-sm text-gray-500">
+              <p>* Vos données restent confidentielles et ne seront jamais partagées avec des tiers.</p>
+            </div>
           </div>
           
           <div>
@@ -42,11 +45,17 @@ const ContactSection: React.FC = () => {
               <h3 className="text-xl font-semibold mb-4">Horaires d'ouverture</h3>
               <ul className="space-y-2">
                 <li className="flex justify-between">
-                  <span>Lundi - Vendredi:</span>
+                  <span className="flex items-center">
+                    <Clock className="mr-2 h-4 w-4" />
+                    Lundi - Vendredi:
+                  </span>
                   <span>9h - 18h</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Samedi - Dimanche:</span>
+                  <span className="flex items-center">
+                    <Clock className="mr-2 h-4 w-4" />
+                    Samedi - Dimanche:
+                  </span>
                   <span>Fermé</span>
                 </li>
               </ul>
