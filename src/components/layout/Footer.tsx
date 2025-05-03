@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-gray-300">
               <li>Email: contact@connectio.fr</li>
-              <li>Téléphone: +33 (0)1 23 45 67 89</li>
+              <li>Téléphone: +33 (0)6 13 14 41 43</li>
             </ul>
           </div>
         </div>

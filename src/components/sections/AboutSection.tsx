@@ -1,4 +1,3 @@
-
 import React from 'react';
 import CTAButton from '@/components/ui/CTAButton';
 
@@ -19,7 +18,7 @@ const AboutSection: React.FC = () => {
               Découvrez comment l'intelligence artificielle peut simplifier et accélérer votre activité, 
               même dans une PME ou une ETI, à travers 5 leviers concrets.
             </p>
-            <CTAButton href="#contact">
+            <CTAButton href="/leviers">
               Notre guide pour entreprise
             </CTAButton>
           </div>

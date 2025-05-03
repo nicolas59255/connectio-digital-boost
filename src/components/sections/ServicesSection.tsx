@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ServiceCard from '@/components/ui/ServiceCard';
 import { Search, Settings, Users, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -89,35 +88,51 @@ const ServicesSection: React.FC = () => {
           </Carousel>
         </div>
         
-        <div className="mt-16 md:mt-24 bg-white rounded-lg shadow-xl p-8 md:p-12">
-          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center">
-            Et si votre transformation numérique ne vous coûtait rien ?
-          </h3>
-          <p className="text-lg mb-8 text-center text-gray-700">
-            De nombreuses aides sont disponibles pour soutenir la modernisation des PME et ETI :
-          </p>
-          <ul className="space-y-3 max-w-2xl mx-auto">
-            <li className="flex items-start">
-              <span className="text-accent-purple mr-2 text-xl">•</span>
-              <span>Aides de l'État pour la transformation numérique</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-accent-purple mr-2 text-xl">•</span>
-              <span>Subventions régionales ou sectorielles</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-accent-purple mr-2 text-xl">•</span>
-              <span>Financements BPI pour l'innovation</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-accent-purple mr-2 text-xl">•</span>
-              <span>Aides OPCO pour les formations</span>
-            </li>
-          </ul>
-          <div className="mt-8 text-center">
-            <CTAButton href="#contact" variant="outline" className="mx-auto">
-              Voir les aides disponibles
-            </CTAButton>
+        <div className="mt-16 md:mt-24 bg-white rounded-lg shadow-xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+          {/* Image à gauche */}
+          <div className="flex-shrink-0">
+            <img
+              src="/public/ministere.avif" // Remplacez par le chemin correct de l'image
+              alt="Ministère de l'Économie"
+              className="w-48 h-auto" // Ajustez la taille selon vos besoins
+            />
+          </div>
+
+          {/* Contenu à droite */}
+          <div>
+            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center md:text-left">
+              Et si votre transformation numérique ne vous coûtait rien ?
+            </h3>
+            <p className="text-lg mb-8 text-center md:text-left text-gray-700">
+              De nombreuses aides sont disponibles pour soutenir la modernisation des PME et ETI :
+            </p>
+            <ul className="space-y-3 max-w-2xl mx-auto md:mx-0">
+              <li className="flex items-start">
+                <span className="text-accent-purple mr-2 text-xl">•</span>
+                <span>Aides de l'État pour la transformation numérique</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-accent-purple mr-2 text-xl">•</span>
+                <span>Subventions régionales ou sectorielles</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-accent-purple mr-2 text-xl">•</span>
+                <span>Financements BPI pour l'innovation</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-accent-purple mr-2 text-xl">•</span>
+                <span>Aides OPCO pour les formations</span>
+              </li>
+            </ul>
+            <div className="mt-8 text-center md:text-left">
+              <CTAButton 
+                href="https://www.economie.gouv.fr/cedef/fiches-pratiques/transformation-numerique-les-aides-aux-entreprises" 
+                variant="outline" 
+                className="mx-auto md:mx-0"
+              >
+                Voir les aides disponibles
+              </CTAButton>
+            </div>
           </div>
         </div>
       </div>

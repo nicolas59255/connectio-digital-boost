@@ -36,7 +36,7 @@ const ContactSection: React.FC = () => {
                 </li>
                 <li className="flex items-center">
                   <Phone className="mr-3 text-primary-600" />
-                  <span>+33 (0)1 23 45 67 89</span>
+                  <span>+33 (0)6 13 14 41 43</span>
                 </li>
               </ul>
             </div>

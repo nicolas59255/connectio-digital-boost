@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -29,9 +28,9 @@ const ContactForm: React.FC = () => {
     
     try {
       // Ces informations doivent être remplacées par vos propres identifiants EmailJS
-      const serviceId = "YOUR_SERVICE_ID"; // Remplacez par votre Service ID d'EmailJS
-      const templateId = "YOUR_TEMPLATE_ID"; // Remplacez par votre Template ID d'EmailJS
-      const userId = "YOUR_USER_ID"; // Remplacez par votre User ID d'EmailJS
+      const serviceId = "service_ja3m2oa"; // Remplacez par votre Service ID d'EmailJS
+      const templateId = "template_r2z1vcq"; // Remplacez par votre Template ID d'EmailJS
+      const userId = "qtPL8IQbj96XPIi33"; // Remplacez par votre User ID d'EmailJS
       
       const templateParams = {
         from_name: formData.name,
@@ -39,6 +38,7 @@ const ContactForm: React.FC = () => {
         phone: formData.phone,
         company: formData.company,
         message: formData.message,
+        to_email: "nicolas59255@gmail.com", // Remplacez par votre adresse e-mail personnelle
       };
       
       await emailjs.send(serviceId, templateId, templateParams, userId);
@@ -60,7 +60,7 @@ const ContactForm: React.FC = () => {
       console.error("Erreur lors de l'envoi du formulaire:", error);
       toast({
         title: "Erreur",
-        description: "Une erreur s'est produite lors de l'envoi du formulaire.",
+        description: `Une erreur s'est produite lors de l'envoi du formulaire. Détails : ${JSON.stringify(error)}`,
         variant: "destructive",
       });
     } finally {
