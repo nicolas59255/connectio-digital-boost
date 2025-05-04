@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ServiceCard from '@/components/ui/ServiceCard';
 import { Search, Settings, Users, FileText } from 'lucide-react';
 import { 
@@ -49,8 +49,15 @@ const servicesData = [
 
 const ServicesSection: React.FC = () => {
   const [api, setApi] = useState<any>(null);
-  const autoplayPlugin = React.useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false })
+  
+  // Créer une instance d'autoplay plugin avec une référence stable
+  const autoplayRef = useRef(
+    Autoplay({
+      delay: 3000,
+      stopOnInteraction: true,
+      stopOnMouseEnter: true,
+      rootNode: (emblaRoot) => emblaRoot.parentElement,
+    })
   );
 
   // Determine how many items to show based on screen width
@@ -79,6 +86,15 @@ const ServicesSection: React.FC = () => {
     };
   }, []);
 
+  // Démarrer l'autoplay manuellement après initialisation du composant
+  useEffect(() => {
+    if (api) {
+      // Force l'activation de l'autoplay
+      api.scrollNext();
+      console.log("Carousel initialized:", api);
+    }
+  }, [api]);
+
   return (
     <section id="services" className="py-16 md:py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-tr from-accent-purple/5 via-transparent to-primary-50/20 z-0"></div>
@@ -99,8 +115,10 @@ const ServicesSection: React.FC = () => {
               align: "center",
               loop: true,
               slidesToScroll: 1,
+              duration: 25,
+              dragFree: true,
             }}
-            plugins={[autoplayPlugin.current]}
+            plugins={[autoplayRef.current]}
             setApi={setApi}
             className="w-full relative"
           >

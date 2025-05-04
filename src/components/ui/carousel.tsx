@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -56,13 +57,20 @@ const Carousel = React.forwardRef<
     },
     ref
   ) => {
-    const [carouselRef, api] = useEmblaCarousel(
-      {
-        ...opts,
-        axis: orientation === "horizontal" ? "x" : "y",
-      },
-      plugins
-    )
+    // Fusionnons les options par défaut avec les options fournies
+    const defaultOptions: CarouselOptions = {
+      loop: true,
+      align: "center",
+      dragFree: true,
+    }
+    
+    const mergedOpts = {
+      ...defaultOptions,
+      ...opts,
+      axis: orientation === "horizontal" ? "x" : "y",
+    }
+    
+    const [carouselRef, api] = useEmblaCarousel(mergedOpts, plugins)
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
 
@@ -113,8 +121,14 @@ const Carousel = React.forwardRef<
       api.on("reInit", onSelect)
       api.on("select", onSelect)
 
+      // Démarrer le défilement après l'initialisation
+      const timer = setTimeout(() => {
+        api.scrollNext()
+      }, 100)
+
       return () => {
-        api?.off("select", onSelect)
+        api.off("select", onSelect)
+        clearTimeout(timer)
       }
     }, [api, onSelect])
 
@@ -123,7 +137,7 @@ const Carousel = React.forwardRef<
         value={{
           carouselRef,
           api: api,
-          opts,
+          opts: mergedOpts,
           orientation:
             orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
           scrollPrev,
