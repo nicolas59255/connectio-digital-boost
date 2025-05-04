@@ -1,7 +1,7 @@
 
 import React from 'react';
 import CTAButton from '@/components/ui/CTAButton';
-import { ArrowDownIcon, LightbulbIcon, SparklesIcon } from 'lucide-react';
+import { ArrowDownIcon, LightbulbIcon, SparklesIcon, AwardIcon, TrendingUpIcon } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
   return (
@@ -12,14 +12,9 @@ const HeroSection: React.FC = () => {
       <div className="absolute top-1/4 -right-20 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
       <div className="absolute bottom-1/2 -left-20 w-72 h-72 bg-accent-purple rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
       
-      {/* Éléments graphiques */}
-      <div className="absolute right-0 top-20 w-full md:w-1/2 h-full opacity-10 md:opacity-20">
-        <div className="relative w-full h-full">
-          <div className="absolute right-10 top-10 w-20 h-20 md:w-32 md:h-32 bg-primary-500 rounded-full mix-blend-multiply filter blur-xl"></div>
-          <div className="absolute right-40 top-40 w-24 h-24 md:w-40 md:h-40 bg-accent-purple rounded-full mix-blend-multiply filter blur-xl"></div>
-          <div className="absolute right-20 top-80 w-16 h-16 md:w-24 md:h-24 bg-accent-cyan rounded-full mix-blend-multiply filter blur-xl"></div>
-        </div>
-      </div>
+      {/* Motifs graphiques */}
+      <div className="absolute top-10 left-1/4 w-20 h-20 rounded-full border-4 border-primary-100 opacity-10 animate-bounce"></div>
+      <div className="absolute bottom-20 right-1/4 w-32 h-32 rounded-full border-4 border-accent-purple opacity-10 animate-pulse"></div>
       
       {/* Icônes flottantes */}
       <div className="hidden md:block absolute right-1/4 top-20 text-primary-500 animate-bounce">
@@ -39,7 +34,10 @@ const HeroSection: React.FC = () => {
           </div>
           
           <h1 className="gradient-text font-bold mb-6 max-w-4xl text-appear animation-delay-200">
-            Boostez votre performance grâce à l'IA
+            Boostez votre performance <span className="relative inline-block">
+              grâce à l'IA
+              <span className="absolute bottom-0 left-0 w-full h-1 bg-accent-purple rounded-full"></span>
+            </span>
           </h1>
           
           <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-3xl text-appear animation-delay-400">
@@ -48,9 +46,20 @@ const HeroSection: React.FC = () => {
             d'optimisation en IA pour les PME, ETI et particuliers.
           </p>
           
-          <p className="text-lg md:text-xl font-medium text-gray-800 mb-10 max-w-2xl text-appear animation-delay-600">
-            Chaque solution est personnalisée, adaptée à vos enjeux.
-          </p>
+          <div className="flex flex-wrap justify-center gap-6 mb-10 text-appear animation-delay-600">
+            <div className="flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-sm">
+              <AwardIcon className="w-5 h-5 text-primary-500 mr-2" />
+              <span className="text-sm font-medium">+75% de productivité</span>
+            </div>
+            <div className="flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-sm">
+              <TrendingUpIcon className="w-5 h-5 text-accent-purple mr-2" />
+              <span className="text-sm font-medium">ROI en 3 mois</span>
+            </div>
+            <div className="flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-sm">
+              <SparklesIcon className="w-5 h-5 text-accent-cyan mr-2" />
+              <span className="text-sm font-medium">+90% de satisfaction client</span>
+            </div>
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 text-appear animation-delay-800">
             <CTAButton href="#contact" className="bg-gradient-to-r from-primary-600 to-accent-purple">

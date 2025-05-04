@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -64,7 +63,7 @@ const Carousel = React.forwardRef<
       dragFree: true,
     }
     
-    const mergedOpts = {
+    const mergedOpts: CarouselOptions = {
       ...defaultOptions,
       ...opts,
       axis: orientation === "horizontal" ? "x" : "y",

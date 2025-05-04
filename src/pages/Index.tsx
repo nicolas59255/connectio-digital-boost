@@ -6,6 +6,7 @@ import HeroSection from '@/components/sections/HeroSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import AboutSection from '@/components/sections/AboutSection';
 import ContactSection from '@/components/sections/ContactSection';
+import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
 const Index: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const Index: React.FC = () => {
       <main className="flex-grow">
         <HeroSection />
         <ServicesSection />
+        <TestimonialsSection />
         <AboutSection />
         <ContactSection />
       </main>
