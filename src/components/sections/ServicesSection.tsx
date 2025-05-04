@@ -5,7 +5,9 @@ import { Search, Settings, Users, FileText } from 'lucide-react';
 import { 
   Carousel, 
   CarouselContent, 
-  CarouselItem
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import CTAButton from '@/components/ui/CTAButton';
@@ -47,7 +49,7 @@ const servicesData = [
 
 const ServicesSection: React.FC = () => {
   const [api, setApi] = useState<any>(null);
-  const plugin = React.useRef(
+  const autoplayPlugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: false })
   );
 
@@ -98,9 +100,9 @@ const ServicesSection: React.FC = () => {
               loop: true,
               slidesToScroll: 1,
             }}
-            plugins={[plugin.current]}
+            plugins={[autoplayPlugin.current]}
             setApi={setApi}
-            className="w-full"
+            className="w-full relative"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {servicesData.map((service, index) => (
@@ -123,6 +125,8 @@ const ServicesSection: React.FC = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
+            <CarouselPrevious className="absolute -left-4 md:-left-8 border-accent-purple text-accent-purple" />
+            <CarouselNext className="absolute -right-4 md:-right-8 border-accent-purple text-accent-purple" />
             <div className="flex justify-center items-center gap-2 mt-8">
               {servicesData.map((_, index) => (
                 <button
@@ -144,9 +148,9 @@ const ServicesSection: React.FC = () => {
           {/* Image à gauche */}
           <div className="flex-shrink-0">
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Minist%C3%A8re_de_l%E2%80%99%C3%89conomie_des_Finances_et_de_la_Souverainet%C3%A9_industrielle_et_num%C3%A9rique.svg" // Remplacez par le chemin correct de l'image
+              src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Minist%C3%A8re_de_l%E2%80%99%C3%89conomie_des_Finances_et_de_la_Souverainet%C3%A9_industrielle_et_num%C3%A9rique.svg"
               alt="Ministère de l'Économie"
-              className="w-48 h-auto" // Ajustez la taille selon vos besoins
+              className="w-48 h-auto"
             />
           </div>
 
