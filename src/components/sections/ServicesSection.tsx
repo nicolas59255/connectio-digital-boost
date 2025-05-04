@@ -1,14 +1,13 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import ServiceCard from '@/components/ui/ServiceCard';
-import { Search, Settings, Users, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, Settings, Users, FileText } from 'lucide-react';
 import { 
   Carousel, 
   CarouselContent, 
-  CarouselItem, 
-  CarouselNext, 
-  CarouselPrevious 
+  CarouselItem
 } from '@/components/ui/carousel';
-import { Button } from '@/components/ui/button';
+import Autoplay from 'embla-carousel-autoplay';
 import CTAButton from '@/components/ui/CTAButton';
 
 const servicesData = [
@@ -47,6 +46,37 @@ const servicesData = [
 ];
 
 const ServicesSection: React.FC = () => {
+  const [api, setApi] = useState<any>(null);
+  const plugin = React.useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false })
+  );
+
+  // Determine how many items to show based on screen width
+  const [itemsToShow, setItemsToShow] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setItemsToShow(4); // Desktop shows all 4 items
+      } else if (window.innerWidth >= 768) {
+        setItemsToShow(2); // Tablet shows 2 items
+      } else {
+        setItemsToShow(1); // Mobile shows 1 item
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <section id="services" className="py-16 md:py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-tr from-accent-purple/5 via-transparent to-primary-50/20 z-0"></div>
@@ -66,24 +96,46 @@ const ServicesSection: React.FC = () => {
             opts={{
               align: "center",
               loop: true,
+              slidesToScroll: 1,
             }}
+            plugins={[plugin.current]}
+            setApi={setApi}
             className="w-full"
           >
-            <CarouselContent className="py-4">
+            <CarouselContent className="-ml-2 md:-ml-4">
               {servicesData.map((service, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <ServiceCard
-                    title={service.title}
-                    icon={service.icon}
-                    description={service.description}
-                    className="h-full"
-                  />
+                <CarouselItem 
+                  key={index} 
+                  className={`pl-2 md:pl-4 ${
+                    itemsToShow === 4 ? 'basis-1/4' : 
+                    itemsToShow === 2 ? 'basis-1/2' : 
+                    'basis-full'
+                  }`}
+                >
+                  <div className="p-1">
+                    <ServiceCard
+                      title={service.title}
+                      icon={service.icon}
+                      description={service.description}
+                      className="h-full"
+                    />
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-center mt-8 gap-4">
-              <CarouselPrevious className="relative static mx-0 translate-y-0" />
-              <CarouselNext className="relative static mx-0 translate-y-0" />
+            <div className="flex justify-center items-center gap-2 mt-8">
+              {servicesData.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => api?.scrollTo(index)}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    api?.selectedScrollSnap() === index
+                      ? "bg-accent-purple scale-125"
+                      : "bg-gray-300"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
           </Carousel>
         </div>
