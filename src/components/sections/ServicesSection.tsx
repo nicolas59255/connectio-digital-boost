@@ -92,7 +92,7 @@ const ServicesSection: React.FC = () => {
           {/* Image à gauche */}
           <div className="flex-shrink-0">
             <img
-              src="/public/ministere.avif" // Remplacez par le chemin correct de l'image
+              src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Minist%C3%A8re_de_l%E2%80%99%C3%89conomie_des_Finances_et_de_la_Souverainet%C3%A9_industrielle_et_num%C3%A9rique.svg" // Remplacez par le chemin correct de l'image
               alt="Ministère de l'Économie"
               className="w-48 h-auto" // Ajustez la taille selon vos besoins
             />
